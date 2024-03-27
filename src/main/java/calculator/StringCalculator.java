@@ -1,24 +1,38 @@
 package calculator;
 
-import java.util.Deque;
-
 public class StringCalculator {
 
-  public String calculate(final Deque<String> inputs) {
-    while (inputs.size() >= 3) {
-      // FIXME: a, operator, b를 생성하는 순서가 섞이면 제대로 동작하지 않을텐데, 어떻게 개선할 수 있지?
-      final int a = Integer.parseInt(inputs.removeFirst());
-      final Operator operator = Operator.getOperator(inputs.removeFirst());
-      final int b = Integer.parseInt(inputs.removeFirst());
-      final String resultStr = operate(a, b, operator);
-      inputs.addFirst(resultStr);
-    }
-    return inputs.poll();
+  private final String[] inputs;
+  private Operator operator;
+
+  StringCalculator(final String expression) {
+    inputs = expression.split(" ");
   }
 
-  private String operate(final int a, final int b, final Operator operator) {
-    int result = operator.calculate(a, b);
-    return String.valueOf(result);
+  public int calculate() {
+    int result = 0;
+    for (String input: inputs) {
+      result = operate(result, input);
+    }
+    return result;
+  }
+
+  private int operate(int result, final String input) {
+    if (isOperator(input)) {
+      operator = Operator.getOperator(input);
+      return result;
+    }
+
+    int value = Integer.parseInt(input);
+    if (operator != null) {
+      result = operator.calculate(result, value);
+    }
+    return result;
+  }
+
+  private boolean isOperator(final String input) {
+    char token = input.charAt(0);
+    return !Character.isDigit(token);
   }
 
 }

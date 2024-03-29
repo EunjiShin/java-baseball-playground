@@ -1,11 +1,9 @@
 package calculator;
 
-import java.util.Objects;
-
 public class StringCalculator {
 
   private final String[] inputs;
-  private Operator operator;
+  private Operator operator = null;
 
   StringCalculator(final String expression) {
     checkExpression(expression);
@@ -21,7 +19,7 @@ public class StringCalculator {
   }
 
   private void checkExpression(final String expression) {
-    if (Objects.equals(expression, " ") || expression == null) {
+    if (expression == null || expression.isEmpty() || expression.equals(" ")) {
       throw new IllegalArgumentException("수식을 입력해주세요.");
     }
   }
@@ -35,7 +33,10 @@ public class StringCalculator {
     int value = Integer.parseInt(input);
     if (operator != null) {
       result = operator.calculate(result, value);
+    } else {
+      result = value;
     }
+
     return result;
   }
 

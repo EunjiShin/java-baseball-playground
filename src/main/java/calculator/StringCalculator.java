@@ -1,11 +1,14 @@
 package calculator;
 
+import java.util.Objects;
+
 public class StringCalculator {
 
   private final String[] inputs;
   private Operator operator;
 
   StringCalculator(final String expression) {
+    checkExpression(expression);
     inputs = expression.split(" ");
   }
 
@@ -15,6 +18,12 @@ public class StringCalculator {
       result = operate(result, input);
     }
     return result;
+  }
+
+  private void checkExpression(final String expression) {
+    if (Objects.equals(expression, " ") || expression == null) {
+      throw new IllegalArgumentException("수식을 입력해주세요.");
+    }
   }
 
   private int operate(int result, final String input) {

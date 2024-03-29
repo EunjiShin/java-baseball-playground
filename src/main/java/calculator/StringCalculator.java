@@ -5,17 +5,10 @@ public class StringCalculator {
   private final String[] inputs;
   private Operator operator = null;
 
+
   StringCalculator(final String expression) {
     checkExpression(expression);
     inputs = expression.split(" ");
-  }
-
-  public int calculate() {
-    int result = 0;
-    for (String input: inputs) {
-      result = operate(result, input);
-    }
-    return result;
   }
 
   private void checkExpression(final String expression) {
@@ -24,27 +17,25 @@ public class StringCalculator {
     }
   }
 
-  private int operate(int result, final String input) {
-    if (isOperator(input)) {
-      operator = Operator.getOperator(input);
-      return result;
+  public int calculate() {
+    int result = 0;
+    for (String input: inputs) {
+      if (Operand.isNotOperand(input)) {
+        operator = Operator.getOperator(input);
+        continue;
+      }
+      result = operate(result, input);
     }
-
-    int value = Integer.parseInt(input);
-    return partialOperate(result, value);
+    return result;
   }
 
-  private int partialOperate(final int result, final int value) {
+  private int operate(int result, final String input) {
+    Operand operand = new Operand(input);
+    final int value = operand.getValue();
     if (operator != null) {
       return operator.calculate(result, value);
-    } else {
-      return value;
     }
-  }
-
-  private boolean isOperator(final String input) {
-    char token = input.charAt(0);
-    return !Character.isDigit(token);
+    return value;
   }
 
 }

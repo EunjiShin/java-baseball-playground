@@ -31,13 +31,15 @@ public class StringCalculator {
     }
 
     int value = Integer.parseInt(input);
-    if (operator != null) {
-      result = operator.calculate(result, value);
-    } else {
-      result = value;
-    }
+    return partialOperate(result, value);
+  }
 
-    return result;
+  private int partialOperate(final int result, final int value) {
+    if (operator != null) {
+      return operator.calculate(result, value);
+    } else {
+      return value;
+    }
   }
 
   private boolean isOperator(final String input) {

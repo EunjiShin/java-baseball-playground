@@ -27,7 +27,7 @@ public enum Operator {
           )
       );
 
-  public static Operator getOperator(final String symbol) {
+  public static Operator findBySymbol(final String symbol) {
     Operator operator = operatorMap.get(symbol);
     if (operator == null) throw new IllegalArgumentException("지원하지 않는 연산자 입니다.");
     return operator;

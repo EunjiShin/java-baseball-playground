@@ -7,7 +7,8 @@ public class Result {
 
     private int strike;
     private int ball;
-    private boolean nothing;
+    private boolean isNothing;
+    private boolean isAnswer;
 
     public Result() {}
 
@@ -15,12 +16,34 @@ public class Result {
         Map<Type, Integer> compareResult = compare(answer, input);
         this.strike = compareResult.get(Type.STRIKE);
         this.ball = compareResult.get(Type.BALL);
-        this.nothing = checkIsNothing(compareResult);
+        this.isNothing = checkIsNothing(compareResult);
+        this.isAnswer = checkIsAnswer(compareResult);
+    }
+
+    public int getStrike() {
+        return this.strike;
+    }
+
+    public int getBall() {
+        return this.ball;
+    }
+
+    public boolean isNothing() {
+        return this.isNothing;
+    }
+
+    public boolean isAnswer() {
+        return this.isAnswer;
     }
 
     private boolean checkIsNothing(Map<Type, Integer> compareResult) {
         Integer nothingCnt = compareResult.get(Type.NOTHING);
-        return nothingCnt == 3;
+        return nothingCnt == Answer.TOTAL_DIGIT_SIZE;
+    }
+
+    private boolean checkIsAnswer(Map<Type, Integer> compareResult) {
+        Integer strikeCnt = compareResult.get(Type.STRIKE);
+        return strikeCnt == Answer.TOTAL_DIGIT_SIZE;
     }
 
     private Map<Type, Integer> compare(Answer answer, Input input) {

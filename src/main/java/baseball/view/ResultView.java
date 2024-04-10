@@ -4,21 +4,32 @@ import baseball.domain.Result;
 
 public class ResultView {
 
-    // 결과를 출력하는 UI 클래스
-    /* TODO
-    *
-    * - 검사 결과 출력
-    * - 스트라이크, 볼이 모두 존재하는 경우, 볼 -> 스트라이크 순서로 한 줄로 출력
-        - N볼 N스트라이크
-    - 스트라이크 또는 볼만 존재하는 경우, 해당 판정만 출력
-        - N볼
-        - N스트라이크
-    - 낫싱인 경우 낫싱만 출력
-    - 정답인 경우, 3스트라이크 & 정답 판정 문구 출력
-    * */
+    public ResultView() {}
 
     public void printResult(Result result) {
+        boolean isNothing = result.isNothing();
+        boolean isAnswer = result.isAnswer();
+        int strikeCnt = result.getStrike();
+        int ballCnt = result.getBall();
 
+        if (isNothing) {
+            System.out.println("낫싱");
+            return;
+        }
+
+        if (isAnswer) {
+            System.out.println(strikeCnt+"스트라이크");
+            System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+            return;
+        }
+
+        if (ballCnt > 0) {
+            System.out.print(ballCnt+"볼 ");
+        }
+
+        if (strikeCnt > 0) {
+            System.out.println(strikeCnt+"스트라이크");
+        }
     }
 
 }

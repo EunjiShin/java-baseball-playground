@@ -9,9 +9,9 @@ import java.util.Set;
 // 일단은 서로 다른 성격의 데이터니 별도의 클래스로 관리해보자.
 public class Answer {
 
-    private static final int MIN_DIGIT = 1;
-    private static final int MAX_DIGIT = 9;
-    private static final int TOTAL_DIGIT_SIZE = 3;
+    public static final int MIN_DIGIT = 1;
+    public static final int MAX_DIGIT = 9;
+    public static final int TOTAL_DIGIT_SIZE = 3;
 
     private static final Random rand = new SecureRandom();
 

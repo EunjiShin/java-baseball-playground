@@ -11,4 +11,10 @@ public class Input {
     *
     * */
 
+    private int[] values;
+
+    public int[] getValues() {
+        return this.values;
+    }
+
 }

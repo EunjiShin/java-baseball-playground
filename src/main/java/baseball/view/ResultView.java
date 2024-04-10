@@ -1,4 +1,6 @@
-package baseball;
+package baseball.view;
+
+import baseball.domain.Result;
 
 public class ResultView {
 
@@ -14,5 +16,9 @@ public class ResultView {
     - 낫싱인 경우 낫싱만 출력
     - 정답인 경우, 3스트라이크 & 정답 판정 문구 출력
     * */
+
+    public void printResult(Result result) {
+
+    }
 
 }

@@ -1,6 +1,6 @@
-package baseball;
+package baseball.domain;
 
-public class Output {
+public class Result {
 
     /*
     * TODO

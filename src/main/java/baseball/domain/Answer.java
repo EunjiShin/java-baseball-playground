@@ -1,4 +1,4 @@
-package baseball;
+package baseball.domain;
 
 import java.security.SecureRandom;
 import java.util.HashSet;
@@ -8,12 +8,6 @@ import java.util.Set;
 // 사용자 입력값과 Answer은 동일한 조건을 갖는다. 하나의 클래스로 관리하는 것이 더 간편할까?
 // 일단은 서로 다른 성격의 데이터니 별도의 클래스로 관리해보자.
 public class Answer {
-
-    /* TODO
-    * 3자리의 양의 정수
-    * 각 자리수는 1~9 사이의 정수
-    * 각 자리수는 중복 불가능
-    * */
 
     private static final int MIN_DIGIT = 1;
     private static final int MAX_DIGIT = 9;

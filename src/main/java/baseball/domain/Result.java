@@ -1,7 +1,9 @@
 package baseball.domain;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Result {
 
@@ -79,26 +81,16 @@ public class Result {
     }
 
     private boolean isStrike(Answer answer, Input input, int index) {
-        int[] answerValues = answer.getValues();
-        int[] inputValues = input.getValues();
-        return answerValues[index] == inputValues[index];
+        List<Integer> answerValues = answer.getValues();
+        List<Integer> inputValues = input.getValues();
+        return Objects.equals(answerValues.get(index), inputValues.get(index));
     }
 
     private boolean isBall(Answer answer, Input input, int index) {
-        int[] answerValues = answer.getValues();
-        int[] inputValues = input.getValues();
-        int target = inputValues[index];
-        return contains(answerValues, target);
-    }
-
-    // FIXME: depth 2임!
-    private boolean contains(int[] array, int target) {
-        for (int value : array) {
-            if (target == value) {
-                return true;
-            }
-        }
-        return false;
+        List<Integer> answerValues = answer.getValues();
+        List<Integer> inputValues = input.getValues();
+        int target = inputValues.get(index);
+        return answerValues.contains(target);
     }
 
 }

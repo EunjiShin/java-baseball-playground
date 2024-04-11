@@ -1,7 +1,9 @@
 package baseball.domain;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -15,13 +17,13 @@ public class Answer {
 
     private static final Random rand = new SecureRandom();
 
-    private int[] values;
+    private List<Integer> values;
 
     public Answer() {
         init();
     }
 
-    public int[] getValues() {
+    public List<Integer> getValues() {
         return this.values;
     }
 
@@ -31,11 +33,7 @@ public class Answer {
             int randomValue = rand.nextInt(MAX_DIGIT) + MIN_DIGIT;
             randomValues.add(randomValue);
         }
-        this.values = convertSetToArray(randomValues);
-    }
-
-    private int[] convertSetToArray(Set<Integer> set) {
-        return set.stream().mapToInt(Integer::intValue).toArray();
+        this.values = new ArrayList<>(randomValues);
     }
 
 }

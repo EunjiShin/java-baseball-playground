@@ -1,5 +1,7 @@
 package baseball.domain;
 
+import java.util.List;
+
 public class Input {
 
     /*
@@ -11,9 +13,15 @@ public class Input {
     *
     * */
 
-    private int[] values;
+    private List<Integer> values;
 
-    public int[] getValues() {
+    public Input() {}
+
+    public Input(String str) {
+        this.values = values;
+    }
+
+    public List<Integer> getValues() {
         return this.values;
     }
 
